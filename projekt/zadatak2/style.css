@@ -1,0 +1,43 @@
+* {
+    font-family: Candara;
+}
+
+body{
+    margin: 0;
+}
+.banner {
+	background-image: url("img/banner.jpg");
+	background-position: center -100px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	height: 300px;
+}
+
+nav {
+    overflow: hidden;
+	background-color: #1a1a1a;
+    text-align: center;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+    display: inline-flex;
+}
+li {
+	float: left;
+    width: 150px;
+    font-size: 18px;
+}
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 18px 16px;
+	text-decoration: none;
+}
+li a:hover {
+	/*background-color: #111;*/
+    color: springgreen;
+}
