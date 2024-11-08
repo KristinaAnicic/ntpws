@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Upload Image</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <style>
             body{
                 padding: 50px;
@@ -51,7 +51,7 @@
                         <div class='col-md-4 col-lg-3'>
                             <div class='card mb-3'>
                                 <img src='{$row['filepath']}' alt='Image' id='openModal' 
-                                data-toggle='modal' image-modal='#imageModal{$row['id']}'/>
+                                data-bs-toggle='modal' data-bs-target='#imageModal{$row['id']}'/>
                                 <div class='card-body text-center'>
                                     <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                 </div>
@@ -60,7 +60,7 @@
                 
                         <!-- Modal -->
                         <div class='modal fade' id='imageModal{$row['id']}' tabindex='-1' role='dialog'>
-                            <div class='modal-dialog modal-dialog-centered'>
+                            <div class='modal-dialog modal-dialog-centered modal-lg'>
                                 <div class='modal-content'>
                                     <div class='modal-body'>
                                         <img src='{$row['filepath']}' class='img-fluid' alt='Image'>
@@ -85,16 +85,5 @@
             ';
             mysqli_close($con);
         ?>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-        <script>
-            const image = document.querySelectorAll('#openModal');
-            image.forEach(img => {
-                img.addEventListener('click', function() {
-                    const modal = new bootstrap.Modal(img.getAttribute('image-modal'));
-                    modal.show();
-            });
-        });
-        </script>
     </body>
 </html>
