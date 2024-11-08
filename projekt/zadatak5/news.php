@@ -1,13 +1,13 @@
 <?php
 print'
     <div class="news container">
-    <h1>NEWS</h1></br>';
-    if (!isset($action)) {
+    <!--<h1>NEWS</h1></br>-->';
+    if (!isset($article)) {
 		print '
-        <a href="index.php?menu=' . $menu . '&action=1">
-            <div class="row">
+        <a href="index.php?menu=' . $menu . '&article=1">
+            <div class="row news-row">
                 <div class="col-lg-4 image">
-                    <img src="img/news-article-1.jpg" alt="RPG-game" title="RPG-game"/>
+                    <img src="img/news/news-article-1.jpg" alt="RPG-game" title="RPG-game"/>
                 </div>
                 <div class="col-lg-8 text">
                     <h2>The Evolution of RPGs: From Classic Adventures to Open Worlds</h2>
@@ -16,10 +16,23 @@ print'
                 </div>
             </div>
         </a>
-        <a href="index.php?menu=' . $menu . '&action=2">
-            <div class="row">
+        <a href="index.php?menu=' . $menu . '&article=2">
+            <div class="row news-row">
                 <div class="col-lg-4 image">
-                    <img src="img/news-article-2.jpg" alt="Esports" title="Esports"/>
+                    <img src="img/news/news-article-3.jpg" alt="Indie games" title="Indie games"/>
+                </div>
+                <div class="col-lg-8 text">
+                    <h2>Top Indie Games of 2024: Hidden Gems Worth Playing</h2>
+                    <p>Indie games are thriving, offering unique stories and gameplay experiences. Check out some of the best indie titles of the year that you may have missed.</p>
+                    <time datetime="2024-10-15">15 October 2024</time>
+                </div>
+            </div>
+        </a>
+
+        <a href="index.php?menu=' . $menu . '&article=3">
+            <div class="row news-row">
+                <div class="col-lg-4 image">
+                    <img src="img/news/news-article-2.jpg" alt="Esports" title="Esports"/>
                 </div>
                 <div class="col-lg-8 text">
                     <h2>Esports in 2024: The Rise of New Contenders</h2>
@@ -29,23 +42,10 @@ print'
             </div>
         </a>
         
-        <a href="index.php?menu=' . $menu . '&action=3">
-            <div class="row">
+        <a href="index.php?menu=' . $menu . '&article=4">
+            <div class="row news-row">
                 <div class="col-lg-4 image">
-                    <img src="img/news-article-3.jpg" alt="Indie games" title="Indie games"/>
-                </div>
-                <div class="col-lg-8 text">
-                    <h2>Top Indie Games of 2024: Hidden Gems Worth Playing</h2>
-                    <p>Indie games are thriving, offering unique stories and gameplay experiences. Check out some of the best indie titles of the year that you may have missed.</p>
-                    <time datetime="2024-10-15">15 October 2024</time>
-                </div>
-            </div>
-        </a>
-        
-        <a href="index.php?menu=' . $menu . '&action=4">
-            <div class="row">
-                <div class="col-lg-4 image">
-                    <img src="img/news-article-4.jpg" alt="Ray tracing" title="Ray tracing"/>
+                    <img src="img/news/news-article-4.jpg" alt="Ray tracing" title="Ray tracing"/>
                 </div>
                 <div class="col-lg-8 text">
                     <h2>The Future of Gaming Graphics: Ray Tracing and Beyond</h2>
@@ -55,10 +55,10 @@ print'
             </div>
         </a>
         
-        <a href="index.php?menu=' . $menu . '&action=5">
-            <div class="row">
+        <a href="index.php?menu=' . $menu . '&article=5">
+            <div class="row news-row">
                 <div class="col-lg-4 image">
-                    <img src="img/news-article-5.jpg" alt="Mobile Gaming" title="Mobile Gaming"/>
+                    <img src="img/news/news-article-5.jpg" alt="Mobile Gaming" title="Mobile Gaming"/>
                 </div>
                 <div class="col-lg-8 text">
                     <h2>Mobile Gaming Revolution: How Smartphones Became Gaming Consoles</h2>
@@ -67,7 +67,10 @@ print'
                 </div>
             </div>
         </a>';
-    };
+    }
+    else{
+        include("articles.php");
+    }
 
     print '</div>';
 ?>

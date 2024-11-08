@@ -17,6 +17,7 @@ print'
     <body>';
         
         if(isset($_GET['menu'])) { $menu   = (int)$_GET['menu']; }
+        if(isset($_GET['article'])) { $article   = (int)$_GET['article']; }
 
         print'
         <!--<nav class="navbar navbar-expand-lg">
@@ -56,14 +57,41 @@ print'
 
         # Homepage
         if (!isset($menu) || $menu == 1) { 
-            echo '<div class="banner-wrapper">
-                <div class="banner"></div>
-                <div class="banner-content col-md-3 col-sm-5">
-                    <h1>The Best Games Out There</h1>
-                    <p>Explore the latest news, reviews, and guides to stay ahead in the gaming world.</p>
-                </div>
-            </div>';
+            // Glavna stranica - banner-home
+            echo '<div class="banner-wrapper banner-home">
+                    <div class="banner"></div>
+                    <div class="banner-content col-md-3 col-sm-5">
+                        <h1>The Best Games Out There</h1>
+                        <p>Explore the latest news, reviews, and guides to stay ahead in the gaming world.</p>
+                    </div>
+                </div>';
+        } else {
+            echo '<div class="banner-wrapper banner-other">
+                    <div class="banner"></div>
+                    <div class="banner-content col-md-3 col-sm-5">';
+        
+            switch ($menu) {
+                case 2:
+                    echo '<h1>News</h1>';
+                    break;
+                case 3:
+                    echo '<h1>Contact</h1>';
+                    break;
+                case 4:
+                    echo '<h1>About Us</h1>';
+                    break;
+                case 5:
+                    echo '<h1>Gallery</h1>';
+                    break;
+                default:
+                    echo '<h1>Page</h1>';
+                    break;
+            }
+        
+            echo '</div>
+                </div>';
         }
+        
         echo '<main>';
 
         # Homepage
