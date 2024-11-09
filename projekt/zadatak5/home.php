@@ -2,7 +2,7 @@
 print'
 <div class="container">
     <h1 class="home">Unleash Your Next Adventure</h1>
-   
+    
         <div class="col-md-12 col-lg-7 col-xl-5">
             <figure style="margin: 0 2em 1em 0em;">
                 <img src="img/Fate-of-Game-Preservation-Games.jpg" alt="" class="gameImg" />
