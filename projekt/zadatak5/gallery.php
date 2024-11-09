@@ -15,7 +15,7 @@
 
     print '
     <div class="container gallery">
-        <h2>Games</h2></br>
+        <h2>List of Popular Games</h2></br>
         <div class="row">';
         foreach ($games as $game) {
             print "

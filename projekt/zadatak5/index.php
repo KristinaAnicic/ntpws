@@ -26,7 +26,6 @@ print'
         </nav>
         '; 
 
-        # Homepage
         echo '
         <div class="banner-wrapper ' . ((!isset($menu) || $menu == 1) ? 'banner-home' : 'banner-other') . '">
             <div class="banner"></div>
@@ -83,8 +82,8 @@ print'
         <div class="social">
             <p>Social media:<br>
                 <a href="https://www.linkedin.com/in/kanicic/" target="_blank"><img src="img/linkedin.svg" alt="Linkedin" title="Linkedin" style="width:24px; margin:0"></a>
-                <a href="https://x.com/home" target="_blank"><img src="img/twitter.svg" alt="Twitter" title="Twitter" style="width:24px; margin-top:0"></a>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="img/youtube.svg" alt="Youtube" title="Youtube" style="width:24px; margin-top:0"></a>
+                <a href="https://x.com/IGN" target="_blank"><img src="img/twitter.svg" alt="Twitter" title="Twitter" style="width:24px; margin-top:0"></a>
+                <a href="https://www.youtube.com/@IGN" target="_blank"><img src="img/youtube.svg" alt="Youtube" title="Youtube" style="width:24px; margin-top:0"></a>
             <p>
         </div>   
         <div class="footer-container">
