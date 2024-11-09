@@ -20,77 +20,45 @@ print'
         if(isset($_GET['article'])) { $article   = (int)$_GET['article']; }
 
         print'
-        <!--<nav class="navbar navbar-expand-lg">
-            <ul>
-                <li><a href="index.php?menu=1">Home</a></li>
-                <li><a href="index.php?menu=2">News</a></li>
-                <li><a href="index.php?menu=3">Contact</a></li>
-                <li><a href="index.php?menu=4">About</a></li>
-                <li><a href="index.php?menu=5">Gallery</a></li>
-            </ul>
-        </nav>-->
-        
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-            <div class="navbar-collapse justify-content-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?menu=1">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?menu=2">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?menu=3">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?menu=4">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?menu=5">Gallery</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
+        <nav class="navbar navbar-expand-lg">';
+            include("menu.php");
+        print '
         </nav>
         '; 
 
         # Homepage
-        if (!isset($menu) || $menu == 1) { 
-            // Glavna stranica - banner-home
-            echo '<div class="banner-wrapper banner-home">
-                    <div class="banner"></div>
-                    <div class="banner-content col-md-3 col-sm-5">
+        echo '
+        <div class="banner-wrapper ' . ((!isset($menu) || $menu == 1) ? 'banner-home' : 'banner-other') . '">
+            <div class="banner"></div>
+                <div class="banner-content col-md-3 col-sm-5">';
+
+                if (!isset($menu) || $menu == 1) { 
+                    echo '
                         <h1>The Best Games Out There</h1>
-                        <p>Explore the latest news, reviews, and guides to stay ahead in the gaming world.</p>
-                    </div>
-                </div>';
-        } else {
-            echo '<div class="banner-wrapper banner-other">
-                    <div class="banner"></div>
-                    <div class="banner-content col-md-3 col-sm-5">';
-        
-            switch ($menu) {
-                case 2:
-                    echo '<h1>News</h1>';
-                    break;
-                case 3:
-                    echo '<h1>Contact Form</h1>';
-                    break;
-                case 4:
-                    echo '<h1>About Us</h1>';
-                    break;
-                case 5:
-                    echo '<h1>Gallery</h1>';
-                    break;
-                default:
-                    echo '<h1>Page</h1>';
-                    break;
-            }
-        
-            echo '</div>
-                </div>';
-        }
+                        <p>Explore the latest news, reviews, and guides to stay ahead in the gaming world.</p>';
+
+                } else { 
+                    switch ($menu) {
+                        case 2:
+                            echo '<h1>News</h1>';
+                            break;
+                        case 3:
+                            echo '<h1>Contact Form</h1>';
+                            break;
+                        case 4:
+                            echo '<h1>About Us</h1>';
+                            break;
+                        case 5:
+                            echo '<h1>Gallery</h1>';
+                            break;
+                        default:
+                            echo '<h1>Page</h1>';
+                            break;
+                    }  
+                }
+                echo '
+                </div>
+            </div>';
         
         echo '<main>';
 
@@ -114,7 +82,7 @@ print'
         <footer>
         <div class="social">
             <p>Social media:<br>
-	            <a href="https://www.linkedin.com/in/kanicic/" target="_blank"><img src="img/linkedin.svg" alt="Linkedin" title="Linkedin" style="width:24px; margin:0"></a>
+                <a href="https://www.linkedin.com/in/kanicic/" target="_blank"><img src="img/linkedin.svg" alt="Linkedin" title="Linkedin" style="width:24px; margin:0"></a>
                 <a href="https://x.com/home" target="_blank"><img src="img/twitter.svg" alt="Twitter" title="Twitter" style="width:24px; margin-top:0"></a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="img/youtube.svg" alt="Youtube" title="Youtube" style="width:24px; margin-top:0"></a>
             <p>
