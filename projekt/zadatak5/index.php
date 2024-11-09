@@ -75,7 +75,7 @@ print'
                     echo '<h1>News</h1>';
                     break;
                 case 3:
-                    echo '<h1>Contact</h1>';
+                    echo '<h1>Contact Form</h1>';
                     break;
                 case 4:
                     echo '<h1>About Us</h1>';
