@@ -1,7 +1,7 @@
 <?php
 
 if ($_SESSION['user']['valid'] == 'true') {
-    if (!isset($action)) { $action = 1; }
+    if (!isset($action)) { $action = ($_SESSION['user']['role'] == 'admin' ? 1 : 2); }
     print'
     <div class="container admin">
         <div class="admin-nav" style="margin-left:12px">
@@ -20,8 +20,9 @@ if ($_SESSION['user']['valid'] == 'true') {
                 </div>
             </div>';
 
-        if ($action == 1) { include("admin/users.php"); }
-        else if ($action == 2) { include("admin/news.php"); }
+        if ($action == 2) { include("admin/news.php"); }
+        else if ($action == 1) { include("admin/users.php"); }
+        
     print '</div>';
 }
 ?>

@@ -233,7 +233,7 @@ p{
 }
 
 .admin th, .admin td{
-	background-color: rgba(238, 238, 238, 0.675);
+	background-color: #c4cfcece;
 	color: black;
 }
 
@@ -242,7 +242,7 @@ p{
 	font-size: 20px;
 	
 }
-.admin b{
+.admin p b, .admin pre b{
 	color: #60b6c8;
 }
 .icon:hover{
@@ -251,4 +251,22 @@ p{
 
 .icon.trash:hover{
 	color: maroon;
+}
+
+.edit-input{
+	/*color: rgb(209, 209, 209);*/
+	color: black;
+	border-bottom: 1px solid black;
+}
+
+.edit-form{
+	background-color: #c4cfcece;
+	padding: 50px;
+	color: black;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.image-button{
+	margin-right: 5px;
 }

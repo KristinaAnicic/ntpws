@@ -15,7 +15,12 @@
         if (emailModal) {
             emailModal.style.display = "none"; 
         }
-    }, 5000); 
+        const sucecssModal = document.getElementById("successModal");
+        if (sucecssModal) {
+            sucecssModal.style.display = "none"; 
+            window.location.href = "index.php?menu=7";
+        }
+    }, 3000); 
 </script>
 
 <?php

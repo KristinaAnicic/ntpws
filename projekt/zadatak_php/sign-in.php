@@ -49,7 +49,7 @@ print'
         $user = mysqli_fetch_assoc($result);
     
         if ($user['active'] == 0){
-            $text = 'Nemate trnuetno prava prijave.'; 
+            $text = 'Login failed.'; 
             $login = "Failed";
             unset($_SESSION['user']);
         }
@@ -74,12 +74,10 @@ print'
         <div class="modal" id="loginModal' . $login . '" tabindex="-1" role="dialog" style="display:block; color:black">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <!--<p>' . $text .'</p>-->
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="closeModal'. $login .'()"></button>
-                    </div>
+                        <button type="button" style="position: absolute; top: 10px; right: 10px;" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="closeModal'. $login .'()"></button>
+                    </br></br>
                     <div class="modal-body">
-                        <h5 class="modal-title">' . $text . '</h5>
+                        <h5 class="modal-title">' . $text . '</h5></br>
                     </div>
                 </div>
             </div>
