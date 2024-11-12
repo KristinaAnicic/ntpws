@@ -43,7 +43,11 @@ else if(isset($_GET['delete']) && $_GET['delete'] != '' && $_SESSION['user']['ro
 
 else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
     if (isset($_GET['edit'])){
-        $sql = 'SELECT * FROM news WHERE id = ' . $_GET['edit'];
+        $sql = 'SELECT news.*, COUNT(images.id) AS numOfImages 
+                FROM news 
+                LEFT JOIN news_images AS images ON images.news_id = news.id 
+                WHERE news.id = ' . (int)($_GET['edit']) . '
+                GROUP BY news.id';
         $result = mysqli_query($conn, $sql);
         $news = mysqli_fetch_array($result);
 
@@ -64,7 +68,7 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
         $news['content'] = "";
 
         if(isset($_POST['title']) && isset($_POST['subheading']) && isset($_POST['description']) && 
-        isset($_POST['content'])){
+        isset($_POST['content']) && isset($_FILES['image']['name']) && isset($_POST['image-title']) && isset($_POST['image-caption'])){
             $date = date('Y-m-d');
             $archive = 1;
             $title = mysqli_real_escape_string($conn, $_POST['title']);
@@ -77,6 +81,34 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
 
             if (mysqli_query($conn, $sql)) {
                 $newArticleId = mysqli_insert_id($conn);
+
+                //$fileCount = count($_FILES['image']['name']);
+                //for ($i = 0; $i < $fileCount; $i++) {
+                    $fileName = basename($_FILES["image"]["name"]);
+                    $filePath = 'img/news/' . $fileName;
+                    
+                    $sql = "SELECT * FROM news_images WHERE image_url = '$filePath'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if(mysqli_num_rows($result) != 0){
+                        $fileName = pathinfo($fileName, PATHINFO_FILENAME) . '_' . time() . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+                    }
+                    
+                    $path = 'img/news/' . $fileName;
+                
+                    $fileType = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+                    $types = array('jpg', 'jpeg', 'png', 'gif');
+                
+                    if (in_array($fileType, $types)) {
+                        if (move_uploaded_file($_FILES["image"]["tmp_name"], $path)) {
+
+                            $imageTitle = mysqli_real_escape_string($conn, $_POST['image-title']);
+                            $imageCaption = mysqli_real_escape_string($conn, $_POST['image-caption']);
+                            $sql = "INSERT INTO news_images(news_id, image_url, title, caption, main) VALUES ({$newArticleId},'{$path}','{$imageTitle}','{$imageCaption}',1)";
+                            mysqli_query($conn, $sql);
+                        } 
+                    }
+                //}
                 header('Location: index.php?menu=8&action=2&edit=' . $newArticleId);
                 exit();
             } 
@@ -86,7 +118,7 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
     /*Edit news content*/
     print' 
     <div class="d-flex">
-        <form method="post" action="" class="edit-form col-lg-12">
+        <form method="post" action="" class="edit-form col-lg-12" enctype="multipart/form-data">
         <input type="hidden" name="editArticleForm" value="editArticleForm">
             <h2><b>Edit Article</b></h2></br><br>
             <label for="title">Title</label></br>
@@ -101,10 +133,23 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
             <label for="content">Content</label></br>
             <textarea name="content" id="content" style="height: 200px" class="form-control-plaintext edit-input">' . $news['content'] . '</textarea></br></br>';
         
+            if(isset($_GET['add'])){
+                print '
+                    <label for="image">Select image:</label>
+                    <input type="file" name="image" id="image" class="form-control" required/><br><br>
+
+                    <label for="title">Image title</label></br>
+                    <input type="text" name="image-title" id="image-title" class="form-control-plaintext edit-input" required/></br></br>
+        
+                    <label for="image-caption">Image caption</label></br>
+                    <input type="text" name="image-caption" id="image-caption" class="form-control-plaintext edit-input" required/></br></br>
+        
+                ';
+            }
             if (isset($_GET['edit']) && ($_SESSION['user']['role'] == 'admin' || $_SESSION['user']['role'] == 'editor')){
             print'
-                <label for="archive">Archive</label></br>
-                <input type="checkbox" name="archive" id="archive" class="edit-input" ' . ($news['archive'] == 1 ? 'checked' : '') . '/></br></br>';
+                <label for="archive">Archive ' . ($news['numOfImages'] == 0 ? '(Cannot be set to visible if the article does not have any images)' : '') . '</label></br>
+                <input type="checkbox" name="archive" id="archive" class="edit-input" ' . ($news['archive'] == 1 ? 'checked' : '') . ($news['numOfImages'] == 0 ? ' disabled' : ''). '/></br></br>';
             }
             print'
             <input type="submit" value="Submit" class="btn btn-outline-dark"/>

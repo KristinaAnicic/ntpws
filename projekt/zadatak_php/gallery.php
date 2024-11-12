@@ -1,5 +1,5 @@
 <?php
-    $games = [
+    /*$games = [
         ["Astrobot", "astrobot.jpg", "Astro Bot's story is a simple one. A UFO crashes into a PS5 carrying more than 300 bots, and our protagonist Astro Bot is the only one left unscathed."],
         ["Baldurs Gate 3", "baldurs-gate-3.jpg", "Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power."],
         ["Black Myth: Wukong", "black-myth-wukong.png", "Black Myth: Wukong is an action RPG rooted in Chinese mythology. You shall set out as the Destined One to venture into the challenges and marvels ahead, to uncover the obscured truth beneath the veil of a glorious legend from the past."],
@@ -11,20 +11,27 @@
         ["Valorant", "valorant.jpg", "Riot Games presents VALORANT: a 5v5 character-based tactical FPS where precise gunplay meets unique agent abilities."],
         ["Marvel's Spider-Man 2", "spider-man-2.jpg", "Be Greater. Together. The incredible power of the symbiote forces Peter Parker and Miles Morales into a desperate fight as they balance their lives, friendships, and their duty to protect."],
         ["Neva", "neva.jpg", "Neva is an emotionally-charged action adventure from the visionary team behind the critically acclaimed GRIS."]
-    ];
+    ];*/
+
+    $sql = 'SELECT news_images.*, IFNULL(news.archive, 0) AS dontShowImage 
+        FROM news_images
+        LEFT JOIN news ON news.id = news_images.news_id';
+    $result = mysqli_query($conn, $sql);
 
     print '
     <div class="container gallery">
         <h2>List of Popular Games</h2></br>
         <div class="row">';
-        foreach ($games as $game) {
-            print "
+        while($row = mysqli_fetch_assoc($result)) {
+            if($row['dontShowImage'] == 0){
+                print "
                 <div class='col-md-6 col-lg-4'>
                     <figure>
-                        <a href='img/games/{$game[1]}' target='_blank'><img src='img/games/{$game[1]}' alt='{$game[0]}'/></a>
-                        <figcaption><b>{$game[0]}</b></br></br>{$game[2]}</figcaption>
+                        <a href='{$row["image_url"]}' target='_blank'><img src='{$row["image_url"]}' alt='{$row["title"]}'/></a>
+                        <figcaption><b>{$row["title"]}</b></br></br>{$row["caption"]}</figcaption>
                     </figure>
                 </div>";
+            }
         }
         print 
         '</div>
