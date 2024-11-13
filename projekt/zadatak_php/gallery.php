@@ -20,7 +20,7 @@
 
     print '
     <div class="container gallery">
-        <h2>List of Popular Games</h2></br>
+        <!--<h2>List of Popular Games</h2></br>-->
         <div class="row">';
         while($row = mysqli_fetch_assoc($result)) {
             if($row['dontShowImage'] == 0){
