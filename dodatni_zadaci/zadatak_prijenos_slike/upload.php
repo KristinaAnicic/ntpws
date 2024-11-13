@@ -1,5 +1,5 @@
 <?php
-    $con = mysqli_connect("localhost","root","","ntpws_db3");
+    include('db.php');
 
     if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])){
         $fileName = basename($_FILES["image"]["name"]);

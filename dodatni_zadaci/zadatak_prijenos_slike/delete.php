@@ -1,6 +1,6 @@
 <?php
     $id = $_GET['id'];
-    $con = mysqli_connect("localhost","root","","ntpws_db3");
+    include('db.php');
     $sql = "SELECT filepath FROM images WHERE id=$id";
     $result = mysqli_query($con,$sql);
 

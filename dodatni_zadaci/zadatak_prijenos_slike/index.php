@@ -25,7 +25,7 @@
                 </form>
             </div>';
             
-            $con = mysqli_connect("localhost","root","","ntpws_db3");
+            include('db.php');
 
             $limit = 10;
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
