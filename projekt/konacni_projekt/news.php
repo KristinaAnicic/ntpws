@@ -1,7 +1,7 @@
 <?php
 print'
     <div class="news container">
-    <!--<h1>NEWS</h1></br>-->';
+    <!--<h1>NEWS</h1><br>-->';
     if (!isset($action)) {
         $sql = 'SELECT * FROM news';
         $result = mysqli_query($conn, $sql);
