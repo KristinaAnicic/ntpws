@@ -10,7 +10,7 @@
     <div class="container article">
         <h2>' . $article['title'] . '</h2>
         <h4>' . $article['subheading'] . '</h4>
-        </br>
+        <br>
         <div class="row">';
             while ($image = mysqli_fetch_assoc($article_images_result)) {
                 print '
@@ -24,10 +24,10 @@
             }
         print'
         </div>
-        </br>
+        <br>
         <div style="clear:both;"></div>
         <div style="white-space: pre-wrap;">'; echo htmlspecialchars($article['content']); print'</div>
-        </br>
+        <br>
         <time datetime="' . $article['date'] . '">' . date("d F Y", strtotime($article['date'])) . '</time>
         <hr>
         <a href="index.php?menu='.$menu.'">Back</a>

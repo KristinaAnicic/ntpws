@@ -28,13 +28,13 @@
 print'
 <div class="d-flex justify-content-center">
     <form method="post" action="" class="contact-form col-lg-4" style="padding: 30px 50px;">
-    </br>
-        <label for="email">E-mail</label></br>
-        <input type="email" name="email" id="email" class="form-control-plaintext contact-input" required/></br>
-        <label for="password">Password</label></br>
-        <input type="password" name="password" id="password" class="form-control-plaintext contact-input" required/></br></br>
+    <br>
+        <label for="email">E-mail</label><br>
+        <input type="email" name="email" id="email" class="form-control-plaintext contact-input" required/><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" class="form-control-plaintext contact-input" required/><br><br>
         <div class="d-grid gap-2">
-            <input type="submit" value="Submit" class="btn btn-outline-primary"/></br>
+            <input type="submit" value="Submit" class="btn btn-outline-primary"/><br>
         </div>
     </form>
 </div>';
@@ -75,9 +75,9 @@ print'
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                         <button type="button" style="position: absolute; top: 10px; right: 10px;" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="closeModal'. $login .'()"></button>
-                    </br></br>
+                    <br><br>
                     <div class="modal-body">
-                        <h5 class="modal-title">' . $text . '</h5></br>
+                        <h5 class="modal-title">' . $text . '</h5><br>
                     </div>
                 </div>
             </div>

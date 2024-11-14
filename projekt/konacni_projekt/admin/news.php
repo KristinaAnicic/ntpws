@@ -8,7 +8,7 @@ if(isset($_GET['id']) && $_GET['id'] != ''){
     $resultImages = mysqli_query($conn, $sqlImages);
 
     print'
-    </br>
+    <br>
     <h2>Article</h2>
     <p><b>Title: </b>' . $news['title'] . '</p>
     <p><b>Description: </b>' . $news['description'] . '</p>
@@ -32,7 +32,7 @@ if(isset($_GET['id']) && $_GET['id'] != ''){
     print'
     </div>
 
-    </br><p><a href="index.php?menu='.$menu.'&amp;action='.$action.'" class="btn btn-outline-light">Back</a></p>';
+    <br><p><a href="index.php?menu='.$menu.'&amp;action='.$action.'" class="btn btn-outline-light">Back</a></p>';
 }
 
 else if(isset($_GET['delete']) && $_GET['delete'] != '' && $_SESSION['user']['role'] == 'admin'){
@@ -57,7 +57,7 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
             $resultImages = mysqli_query($conn, $sqlImages);
             include('news-edit.php');
         } else {
-            echo "</br><p>You do not have permission to edit this article.</p>";
+            echo "<br><p>You do not have permission to edit this article.</p>";
             exit();
         }
     }
@@ -120,62 +120,62 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
     <div class="d-flex">
         <form method="post" action="" class="edit-form col-lg-12" enctype="multipart/form-data">
         <input type="hidden" name="editArticleForm" value="editArticleForm">
-            <h2><b>Edit Article</b></h2></br><br>
-            <label for="title">Title</label></br>
-            <input type="text" name="title" id="title" class="form-control-plaintext edit-input" value="' . $news['title'] . '" required/></br></br>
+            <h2><b>Edit Article</b></h2><br><br>
+            <label for="title">Title</label><br>
+            <input type="text" name="title" id="title" class="form-control-plaintext edit-input" value="' . $news['title'] . '" required/><br><br>
             
-            <label for="subheading">Subheading</label></br>
-            <input type="text" name="subheading" id="subheading" class="form-control-plaintext edit-input" value="' . $news['subheading'] . '" required/></br></br>
+            <label for="subheading">Subheading</label><br>
+            <input type="text" name="subheading" id="subheading" class="form-control-plaintext edit-input" value="' . $news['subheading'] . '" required/><br><br>
             
-            <label for="description">Description</label></br>
-            <input type="description" name="description" id="description" class="form-control-plaintext edit-input" value="' . $news['description'] . '" required/></br></br>
+            <label for="description">Description</label><br>
+            <input type="description" name="description" id="description" class="form-control-plaintext edit-input" value="' . $news['description'] . '" required/><br><br>
             
-            <label for="content">Content</label></br>
-            <textarea name="content" id="content" style="height: 200px" class="form-control-plaintext edit-input">' . $news['content'] . '</textarea></br></br>';
+            <label for="content">Content</label><br>
+            <textarea name="content" id="content" style="height: 200px" class="form-control-plaintext edit-input">' . $news['content'] . '</textarea><br><br>';
         
             if(isset($_GET['add'])){
                 print '
                     <label for="image">Select image:</label>
                     <input type="file" name="image" id="image" class="form-control" required/><br><br>
 
-                    <label for="title">Image title</label></br>
-                    <input type="text" name="image-title" id="image-title" class="form-control-plaintext edit-input" required/></br></br>
+                    <label for="title">Image title</label><br>
+                    <input type="text" name="image-title" id="image-title" class="form-control-plaintext edit-input" required/><br><br>
         
-                    <label for="image-caption">Image caption</label></br>
-                    <input type="text" name="image-caption" id="image-caption" class="form-control-plaintext edit-input" required/></br></br>
+                    <label for="image-caption">Image caption</label><br>
+                    <input type="text" name="image-caption" id="image-caption" class="form-control-plaintext edit-input" required/><br><br>
         
                 ';
             }
             if (isset($_GET['edit']) && ($_SESSION['user']['role'] == 'admin' || $_SESSION['user']['role'] == 'editor')){
             print'
-                <label for="archive">Archive ' . ($news['numOfImages'] == 0 ? '(Cannot be set to visible if the article does not have any images)' : '') . '</label></br>
-                <input type="checkbox" name="archive" id="archive" class="edit-input" ' . ($news['archive'] == 1 ? 'checked' : '') . ($news['numOfImages'] == 0 ? ' disabled' : ''). '/></br></br>';
+                <label for="archive">Archive ' . ($news['numOfImages'] == 0 ? '(Cannot be set to visible if the article does not have any images)' : '') . '</label><br>
+                <input type="checkbox" name="archive" id="archive" class="edit-input" ' . ($news['archive'] == 1 ? 'checked' : '') . ($news['numOfImages'] == 0 ? ' disabled' : ''). '/><br><br>';
             }
             print'
             <input type="submit" value="Submit" class="btn btn-outline-dark"/>
         </form>
     </div>
 
-    </br>';
+    <br>';
 
     /*Add new images*/
     if (isset($_GET['edit'])){
     print'
     <form method="post" action="" class="edit-form" enctype="multipart/form-data">
         <input type="hidden" name="addImageForm" value="addImageForm">
-        <h3><b>Add Image</b></h3></br>
+        <h3><b>Add Image</b></h3><br>
         <div class="form-group">
             <input type="file" name="image" class="form-control" required>
         </div>
-        </br>
-        <label for="title">Title</label></br>
-        <input type="text" name="title" id="title" class="form-control-plaintext edit-input" required/></br></br>
+        <br>
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title" class="form-control-plaintext edit-input" required/><br><br>
         
-        <label for="caption">Caption</label></br>
-        <input type="text" name="caption" id="caption" class="form-control-plaintext edit-input" required/></br></br>
+        <label for="caption">Caption</label><br>
+        <input type="text" name="caption" id="caption" class="form-control-plaintext edit-input" required/><br><br>
         
         <button type="submit" class="btn btn-primary">Upload</button>
-    </form></br>';
+    </form><br>';
     }
 
     /*Edit content of images*/
@@ -207,7 +207,7 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
     </div>';
     }
     print'
-    </br>
+    <br>
     <p><a href="index.php?menu='.$menu.'&amp;action='.$action.'" class="btn btn-outline-light">Back</a></p>';
 }
 

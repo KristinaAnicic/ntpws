@@ -20,7 +20,7 @@
 
     print '
     <div class="container gallery">
-        <!--<h2>List of Popular Games</h2></br>-->
+        <!--<h2>List of Popular Games</h2><br>-->
         <div class="row">';
         while($row = mysqli_fetch_assoc($result)) {
             if($row['dontShowImage'] == 0){
@@ -28,7 +28,7 @@
                 <div class='col-md-6 col-lg-4'>
                     <figure>
                         <a href='{$row["image_url"]}' target='_blank'><img src='{$row["image_url"]}' alt='{$row["title"]}'/></a>
-                        <figcaption><b>{$row["title"]}</b></br></br>{$row["caption"]}</figcaption>
+                        <figcaption><b>{$row["title"]}</b><br><br>{$row["caption"]}</figcaption>
                     </figure>
                 </div>";
             }

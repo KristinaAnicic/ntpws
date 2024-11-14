@@ -22,7 +22,7 @@ print'
 
             <h4>Stay Ahead of the Trends</h3>
             <p>With gaming evolving faster than ever, it\'s crucial to stay informed. GameSphere provides the latest trends, technological advancements, and industry news, keeping you at the cutting edge of the gaming world. From VR innovations to eSports highlights, we bring you the updates that matter.</p>
-     
+    
     </div>
 </div>
 ';

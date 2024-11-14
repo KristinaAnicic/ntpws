@@ -60,23 +60,23 @@ function isEmailRegistered($email, $conn) {
 print'
 <div class="d-flex justify-content-center">
 <form method="post" action="" class="contact-form col-lg-8">
-    <label for="firstName">First Name *</label></br>
-    <input type="text" name="firstName" id="firstName" class="form-control-plaintext contact-input" required/></br></br>
+    <label for="firstName">First Name *</label><br>
+    <input type="text" name="firstName" id="firstName" class="form-control-plaintext contact-input" required/><br><br>
     
-    <label for="lastName">Last Name *</label></br>
-    <input type="text" name="lastName" id="lastName" class="form-control-plaintext contact-input" required/></br></br>
+    <label for="lastName">Last Name *</label><br>
+    <input type="text" name="lastName" id="lastName" class="form-control-plaintext contact-input" required/><br><br>
     
-    <label for="email">E-mail *</label></br>
-    <input type="email" name="email" id="email" class="form-control-plaintext contact-input" required/></br></br>
+    <label for="email">E-mail *</label><br>
+    <input type="email" name="email" id="email" class="form-control-plaintext contact-input" required/><br><br>
     
-    <label for="password">Password  - (If left blank, it will be generated automatically)</label></br>
+    <label for="password">Password  - (If left blank, it will be generated automatically)</label><br>
     <!--<label>
         <input type="checkbox" name="generateUsername">
         Generate Password Automatically
     </label><br><br>-->
-    <input type="password" name="password" id="password" class="form-control-plaintext contact-input" minlength="8"/></br></br>
+    <input type="password" name="password" id="password" class="form-control-plaintext contact-input" minlength="8"/><br><br>
     
-    <label for="country">Country *</label></br>
+    <label for="country">Country *</label><br>
     <select name="country" id="country" class="form-control-plaintext contact-input" required>
         <option value="" disabled selected>Please select</option>';
     while($row = mysqli_fetch_array($countries_result)) {
@@ -84,12 +84,12 @@ print'
     }
     print'
     </select>
-    </br></br><label for="city">City *</label></br>
-    <input type="text" name="city" id="city" class="form-control-plaintext contact-input" required/></br></br>
-    <label for="address">Address *</label></br>
-    <input type="text" name="address" id="address" class="form-control-plaintext contact-input" required/></br></br>
-    <label for="birth_date">Date of birth *</label></br>
-    <input type="date" name="birth_date" id="birth_date" class="form-control-plaintext contact-input" required/></br></br>
+    <br><br><label for="city">City *</label><br>
+    <input type="text" name="city" id="city" class="form-control-plaintext contact-input" required/><br><br>
+    <label for="address">Address *</label><br>
+    <input type="text" name="address" id="address" class="form-control-plaintext contact-input" required/><br><br>
+    <label for="birth_date">Date of birth *</label><br>
+    <input type="date" name="birth_date" id="birth_date" class="form-control-plaintext contact-input" required/><br><br>
     <input type="submit" value="Submit" class="btn btn-outline-primary"/>
 </form>
 </div>';
@@ -160,7 +160,7 @@ print'
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
                     </div>
                     <div class="modal-body">
-                        <h5 class="modal-title" style="color:green">Registration Successful!</h5></br>
+                        <h5 class="modal-title" style="color:green">Registration Successful!</h5><br>
                         <p><strong>Your Username:</strong> ' . $username . '</p>';
                         if (empty($_POST['password'])) {
                             echo '<p><strong>Your Password:</strong> ' . $password . '</p>';

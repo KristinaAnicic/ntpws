@@ -10,7 +10,7 @@ if ($_SESSION['user']['role'] == 'admin') {
         $user = mysqli_fetch_array($result);
 
         print'
-        </br>
+        <br>
         <h2>User Info</h2>
         <p><b>First Name: </b>' . $user['firstname'] . '</p>
         <p><b>Last Name: </b>' . $user['lastname'] . '</p>
@@ -22,7 +22,7 @@ if ($_SESSION['user']['role'] == 'admin') {
         <p><b>Birth Date: </b>' . $user['date_of_birth'] . '</p>
         <p><b>Role: </b>' . $user['role'] . '</p>
 
-        </br><p><a href="index.php?menu='.$menu.'&amp;action='.$action.'" class="btn btn-outline-light">Back</a></p>';
+        <br><p><a href="index.php?menu='.$menu.'&amp;action='.$action.'" class="btn btn-outline-light">Back</a></p>';
     }
 
     else if(isset($_GET['delete']) && $_GET['delete'] != ''){
@@ -62,33 +62,33 @@ if ($_SESSION['user']['role'] == 'admin') {
         print' 
         <div class="d-flex">
             <form method="post" action="" class="edit-form col-lg-5">
-                <h2><b>Edit User</b></h2></br><br>
-                <label for="firstName">First Name</label></br>
-                <input type="text" name="firstName" id="firstName" class="form-control-plaintext edit-input" value="' . $user['firstname'] . '" required/></br></br>
+                <h2><b>Edit User</b></h2><br><br>
+                <label for="firstName">First Name</label><br>
+                <input type="text" name="firstName" id="firstName" class="form-control-plaintext edit-input" value="' . $user['firstname'] . '" required/><br><br>
                 
-                <label for="lastName">Last Name</label></br>
-                <input type="text" name="lastName" id="lastName" class="form-control-plaintext edit-input" value="' . $user['lastname'] . '" required/></br></br>
+                <label for="lastName">Last Name</label><br>
+                <input type="text" name="lastName" id="lastName" class="form-control-plaintext edit-input" value="' . $user['lastname'] . '" required/><br><br>
                 
-                <label for="email">E-mail</label></br>
-                <input type="email" name="email" id="email" class="form-control-plaintext edit-input" value="' . $user['email'] . '" required/></br></br>
+                <label for="email">E-mail</label><br>
+                <input type="email" name="email" id="email" class="form-control-plaintext edit-input" value="' . $user['email'] . '" required/><br><br>
                 
-                <label for="username">Username</label></br>
-                <input type="username" name="username" id="username" class="form-control-plaintext edit-input" value="' . $user['username'] . '" required/></br></br>
+                <label for="username">Username</label><br>
+                <input type="username" name="username" id="username" class="form-control-plaintext edit-input" value="' . $user['username'] . '" required/><br><br>
                 
-                <label for="role">Role</label></br>
+                <label for="role">Role</label><br>
                 <select name="role" id="role" class="form-control-plaintext edit-input" required>';
                 while($row = mysqli_fetch_array($resultRoles)) {
                     echo "<option value='" . $row['id']."' class='edit-option' " . ($row['id'] == $user['role_id'] ? 'selected' : '') . ">" . $row['name'] . "</option>";
                 }
                 print'
                 </select>
-                </br></br><label for="active">Active</label></br>
-                <input type="checkbox" name="active" id="active" class="edit-input" ' . ($user['active'] == 1 ? 'checked' : '') . '/></br></br>
+                <br><br><label for="active">Active</label><br>
+                <input type="checkbox" name="active" id="active" class="edit-input" ' . ($user['active'] == 1 ? 'checked' : '') . '/><br><br>
                 <input type="submit" value="Submit" class="btn btn-outline-dark"/>
             </form>
         </div>
         
-        </br>
+        <br>
         <p><a href="index.php?menu='.$menu.'&amp;action='.$action.'" class="btn btn-outline-light">Back</a></p>';
     }
 
@@ -138,7 +138,7 @@ if ($_SESSION['user']['role'] == 'admin') {
 }
 else{
     print'
-    </br>
+    <br>
     <p>You cannot view this page because you do not have administrative privileges.</p>';
 }
 
