@@ -17,6 +17,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?menu=5">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?menu=10">Games API</a>
                 </li>';
                 if (!isset($_SESSION['user']['valid']) || $_SESSION['user']['valid'] == 'false') {
                     print '

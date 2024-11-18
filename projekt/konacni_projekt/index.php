@@ -14,6 +14,7 @@ print'
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <title>GameSphere</title>
     </head>
     <body>';
@@ -64,6 +65,8 @@ print'
                         case 9:
                             echo '<h1>Sign out</h1>';
                             break;
+                        case 10:
+                            echo '<h1>Games API</h1>';
                     }  
                 }
                 echo '
@@ -98,9 +101,13 @@ print'
         #Sign out
         else if ($menu == 9) { include("sign-out.php"); }
 
+        #Games API
+        else if ($menu == 10) { include("games-api.php"); }
+
         echo '</main>';
 
     print'    
+        <div style="clear: both;"></div>
         <footer>
         <div class="social">
             <p>Social media:<br>

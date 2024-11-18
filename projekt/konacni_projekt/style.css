@@ -157,6 +157,7 @@ p{
 }
 
 .social{
+	display:block;
 	margin: 0 auto;
 	width: 80%;
 }
@@ -242,8 +243,11 @@ p{
 	font-size: 20px;
 	
 }
-.admin p b, .admin pre b{
+.admin p b, .admin pre b, .game-info b{
 	color: #60b6c8;
+}
+.game-info b{
+	font-size: 20px;
 }
 .icon:hover{
 	color: rgb(20, 37, 66);
@@ -269,4 +273,13 @@ p{
 
 .image-button{
 	margin-right: 5px;
+}
+
+.games-list-card{
+	background-color: rgba(42, 42, 42, 0.764);
+	border-color: rgb(183, 183, 183);
+	text-decoration: none;
+}
+.games-list a{
+	text-decoration: none;
 }
