@@ -5,7 +5,7 @@
     $reqPrefs['http']['method'] = 'GET';
     $stream_context = stream_context_create($reqPrefs);
 
-    if(isset($_GET['slug']) == false){
+    if(isset($_GET['game']) == false){
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
         if(isset($_POST['search']) || isset($_GET['search'])){
@@ -38,7 +38,7 @@
                 foreach ($data->results as $game){
                     print "
                     <div class='col-md-4 col-lg-3'>
-                        <a href='index.php?menu=10&page={$page}&slug=" . $game->slug . (isset($_POST['search']) ? '&search='.$_POST['search'] : '') ."'>
+                        <a href='index.php?menu=10&page={$page}&game=" . $game->slug . (isset($_POST['search']) ? '&search='.$_POST['search'] : '') ."'>
                         <div class='card text-white mb-3 games-list-card'>
                             <img src='{$game->background_image}' alt='Image' id='openModal' 
                             data-bs-toggle='modal' data-bs-target='#imageModal{$game->id}'/>
@@ -72,12 +72,12 @@
         </div>';
     }
     else{
-        $slug = $_GET['slug'];
-        $uri = $baseUri . "/" . $slug ."?key=" . $apiKey;
+        $GameName = $_GET['game'];
+        $uri = $baseUri . "/" . $GameName ."?key=" . $apiKey;
         $response = file_get_contents($uri, false, $stream_context);
         $game = json_decode($response);
 
-        $uriScreenshots = $baseUri . "/" . $slug ."/screenshots?key=" . $apiKey;
+        $uriScreenshots = $baseUri . "/" . $GameName ."/screenshots?key=" . $apiKey;
         $responseScreenshots = file_get_contents($uriScreenshots, false, $stream_context);
         $gameScreenshots = json_decode($responseScreenshots);
         print"
