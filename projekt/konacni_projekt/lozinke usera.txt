@@ -1,0 +1,5 @@
+User: admin
+Password: admin1234
+
+User: editor
+Password: editor1234
