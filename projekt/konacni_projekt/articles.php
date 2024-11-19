@@ -16,8 +16,10 @@
                 print '
                 <div class="img_news col-md-4 col-lg-3 mb-2">
                     <figure>
-                        <img src="' . $image['image_url'] . '" alt="' . $image['title'] . '"/>
-                        <figcaption>' . $image['caption'] . '</figcaption>
+                        <img src="' . $image['image_url'] . '" alt="' . $image['title'] . '"/>';
+                        
+                        if($image['caption'] != NULL && $image['caption'] != '/') 
+                            print '<figcaption>' . $image['caption'] . '</figcaption>
                     </figure>
                 </div>
                 ';
