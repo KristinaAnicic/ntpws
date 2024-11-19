@@ -39,7 +39,7 @@ if (isset($_POST['addImageForm'])) {
         $path = 'img/news/' . $fileName;
     
         $fileType = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-        $types = array('jpg', 'jpeg', 'png', 'gif');
+        $types = array('jpg', 'jpeg', 'png', 'gif','avif');
     
         if (in_array($fileType, $types)) {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $path)) {
