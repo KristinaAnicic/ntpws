@@ -16,7 +16,7 @@
             emailModal.style.display = "none"; 
         }
         const sucecssModal = document.getElementById("successModal");
-        if (sucecssModal) {
+        if (sucecssModal && isset($generated_password) == false) {
             sucecssModal.style.display = "none"; 
             window.location.href = "index.php?menu=7";
         }
@@ -121,6 +121,7 @@ print'
         $username = generateUsername($_POST['firstName'], $_POST['lastName'], $conn);
 
         if(empty($_POST['password'])){
+            $generated_password = true;
             $password = bin2hex(random_bytes(8));
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         }
