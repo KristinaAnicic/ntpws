@@ -3,7 +3,7 @@
     
     function closeModalSuccess() {
         document.getElementById("loginModalSuccess").style.display = "none";
-        window.location.href = "index.php?menu=1";
+        window.location.href = "index.php?menu=8";
     }
     function closeModalFailed() {
         document.getElementById("loginModalFailed").style.display = "none";
@@ -14,7 +14,7 @@
         const loginModalSuccess = document.getElementById("loginModalSuccess");
         if (loginModalSuccess) {
             loginModalSuccess.style.display = "none"; 
-            window.location.href = "index.php?menu=1";
+            window.location.href = "index.php?menu=8";
         }
         const loginModalFailed = document.getElementById("loginModalFailed");
         if (loginModalFailed) {
