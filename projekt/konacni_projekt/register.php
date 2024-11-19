@@ -15,9 +15,9 @@
         if (emailModal) {
             emailModal.style.display = "none"; 
         }
-        const sucecssModal = document.getElementById("successModal");
-        if (sucecssModal && isset($generated_password) == false) {
-            sucecssModal.style.display = "none"; 
+        const successModal = document.getElementById("successModal");
+        if (successModal && isset($generated_password) == false) {
+            successModal.style.display = "none"; 
             window.location.href = "index.php?menu=7";
         }
     }, 3000); 
