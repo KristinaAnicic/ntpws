@@ -145,10 +145,9 @@ print'
         } else {
             $registrationSuccess = false;
         }
-    }
+    
 
     if (isset($registrationSuccess) && $registrationSuccess) {
-        $_POST = array();
         echo '
         <!-- Modal -->
         <div class="modal" id="successModal" tabindex="-1" role="dialog" style="display:block; color:black">
@@ -173,4 +172,5 @@ print'
             </div>
         </div>';
     }
+}
 ?>
