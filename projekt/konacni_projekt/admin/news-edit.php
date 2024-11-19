@@ -22,9 +22,9 @@ if (isset($_POST['editArticleForm'])) {
 }
 
 if (isset($_POST['addImageForm'])) {
-    if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['caption'])){
-        $title = mysqli_real_escape_string($conn, $_POST['title']);
-        $caption = mysqli_real_escape_string($conn, $_POST['caption']);
+    if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])){
+        $title = isset($_POST['title']) ? mysqli_real_escape_string($conn, $_POST['title']) : NULL;
+        $caption = isset($_POST['caption']) ? mysqli_real_escape_string($conn, $_POST['caption']) : NULL;
         
         $fileName = basename($_FILES["image"]["name"]);
         $filePath = 'img/news/' . $fileName;
@@ -39,7 +39,7 @@ if (isset($_POST['addImageForm'])) {
         $path = 'img/news/' . $fileName;
     
         $fileType = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-        $types = array('jpg', 'jpeg', 'png', 'gif','avif');
+        $types = array('jpg', 'jpeg', 'png', 'gif','avif','webp');
     
         if (in_array($fileType, $types)) {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $path)) {
@@ -53,8 +53,8 @@ if (isset($_POST['addImageForm'])) {
 if (isset($_POST['editImageForm'])) {
     if (isset($_POST['title']) && isset($_POST['caption'])){
         $id = $_POST['id'];
-        $title = mysqli_real_escape_string($conn, $_POST['title']);
-        $caption = mysqli_real_escape_string($conn, $_POST['caption']);
+        $title = isset($_POST['title']) ? mysqli_real_escape_string($conn, $_POST['title']) : NULL;
+        $caption = isset($_POST['caption']) ? mysqli_real_escape_string($conn, $_POST['caption']) : NULL;
 
         $sql = "UPDATE news_images SET title = '" . $title . "', caption = '" . $caption . "' WHERE id = " . $id;
         mysqli_query($conn, $sql);

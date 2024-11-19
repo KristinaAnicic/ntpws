@@ -18,8 +18,10 @@
                     <figure>
                         <img src="' . $image['image_url'] . '" alt="' . $image['title'] . '"/>';
                         
-                        if($image['caption'] != NULL && $image['caption'] != '/') 
-                            print '<figcaption>' . $image['caption'] . '</figcaption>
+                        if($image['caption'] != NULL && $image['caption'] != '/') {
+                            print '<figcaption>' . $image['caption'] . '</figcaption>';
+                        }
+                        print'
                     </figure>
                 </div>
                 ';

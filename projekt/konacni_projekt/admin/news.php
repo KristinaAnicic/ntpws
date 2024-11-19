@@ -68,7 +68,7 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
         $news['content'] = "";
 
         if(isset($_POST['title']) && isset($_POST['subheading']) && isset($_POST['description']) && 
-        isset($_POST['content']) && isset($_FILES['image']['name']) && isset($_POST['image-title']) && isset($_POST['image-caption'])){
+        isset($_POST['content']) && isset($_FILES['image']['name']) /*&& isset($_POST['image-title']) && isset($_POST['image-caption'])*/){
             $date = date('Y-m-d');
             $archive = 1;
             $title = mysqli_real_escape_string($conn, $_POST['title']);
@@ -82,9 +82,9 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
             if (mysqli_query($conn, $sql)) {
                 $newArticleId = mysqli_insert_id($conn);
 
-                //$fileCount = count($_FILES['image']['name']);
-                //for ($i = 0; $i < $fileCount; $i++) {
-                    $fileName = basename($_FILES["image"]["name"]);
+                $fileCount = count($_FILES['image']['name']);
+                for ($i = 0; $i < $fileCount; $i++) {
+                    $fileName = basename($_FILES["image"]["name"][$i]);
                     $filePath = 'img/news/' . $fileName;
                     
                     $sql = "SELECT * FROM news_images WHERE image_url = '$filePath'";
@@ -97,18 +97,19 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
                     $path = 'img/news/' . $fileName;
                 
                     $fileType = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-                    $types = array('jpg', 'jpeg', 'png', 'gif');
+                    $types = array('jpg', 'jpeg', 'png', 'gif','avif','webp');
                 
                     if (in_array($fileType, $types)) {
-                        if (move_uploaded_file($_FILES["image"]["tmp_name"], $path)) {
+                        if (move_uploaded_file($_FILES["image"]["tmp_name"][$i], $path)) {
 
-                            $imageTitle = mysqli_real_escape_string($conn, $_POST['image-title']);
-                            $imageCaption = mysqli_real_escape_string($conn, $_POST['image-caption']);
-                            $sql = "INSERT INTO news_images(news_id, image_url, title, caption, main) VALUES ({$newArticleId},'{$path}','{$imageTitle}','{$imageCaption}',1)";
+                            //$imageTitle = mysqli_real_escape_string($conn, $_POST['image-title']);
+                            //$imageCaption = mysqli_real_escape_string($conn, $_POST['image-caption']);
+                            //$sql = "INSERT INTO news_images(news_id, image_url, title, caption, main) VALUES ({$newArticleId},'{$path}','{$imageTitle}','{$imageCaption}',1)";
+                            $sql = "INSERT INTO news_images(news_id, image_url, main) VALUES ({$newArticleId},'{$path}', ". (($i == 0) ? '1' : '0'). ")";
                             mysqli_query($conn, $sql);
                         } 
                     }
-                //}
+                }
                 header('Location: index.php?menu=8&action=2&edit=' . $newArticleId);
                 exit();
             } 
@@ -135,14 +136,14 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
         
             if(isset($_GET['add'])){
                 print '
-                    <label for="image">Select image:</label>
-                    <input type="file" name="image" id="image" class="form-control" required/><br><br>
+                    <label for="image">Select images:</label>
+                    <input type="file" name="image[]" id="image" class="form-control" multiple required/><br><br>
 
-                    <label for="title">Image title</label><br>
+                    <!--<label for="title">Image title</label><br>
                     <input type="text" name="image-title" id="image-title" class="form-control-plaintext edit-input" required/><br><br>
         
                     <label for="image-caption">Image caption</label><br>
-                    <input type="text" name="image-caption" id="image-caption" class="form-control-plaintext edit-input" required/><br><br>
+                    <input type="text" name="image-caption" id="image-caption" class="form-control-plaintext edit-input" required/><br><br>-->
         
                 ';
             }
@@ -169,10 +170,10 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
         </div>
         <br>
         <label for="title">Title</label><br>
-        <input type="text" name="title" id="title" class="form-control-plaintext edit-input" required/><br><br>
+        <input type="text" name="title" id="title" class="form-control-plaintext edit-input"/><br><br>
         
         <label for="caption">Caption</label><br>
-        <input type="text" name="caption" id="caption" class="form-control-plaintext edit-input" required/><br><br>
+        <input type="text" name="caption" id="caption" class="form-control-plaintext edit-input"/><br><br>
         
         <button type="submit" class="btn btn-primary">Upload</button>
     </form><br>';
@@ -191,8 +192,8 @@ else if((isset($_GET['edit']) && $_GET['edit'] != '') || isset($_GET['add'])){
                     <figure>
                         <img src="' . $image['image_url'] . '" alt="' . $image['title'] . '"/>
                         
-                        <input type="text" name="title" class="form-control" value="' . $image['title'] . '" placeholder="Enter title" required/>
-                        <textarea name="caption" class="form-control edit-input" placeholder="Enter caption" rows="3" required>' . $image['caption'] . '</textarea>
+                        <input type="text" name="title" class="form-control" value="' . $image['title'] . '" placeholder="Enter title"/>
+                        <textarea name="caption" class="form-control edit-input" placeholder="Enter caption" rows="3">' . $image['caption'] . '</textarea>
                         
                         <div class="d-flex justify-content-center mt-2">
                             <input type="submit" class="btn btn-primary btn-sm ml-2 image-button" value="Update Caption"/>
